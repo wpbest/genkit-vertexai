@@ -25,31 +25,12 @@ import {setGlobalOptions} from "firebase-functions";
 // In the v1 API, each function can only serve one request per container, so
 // this will be the maximum concurrent request count.
 
-import {onCall} from "firebase-functions/v2/https";
 import {initializeApp} from "firebase-admin/app";
+import { defineSecret } from "firebase-functions/params";
 
 
 setGlobalOptions({ maxInstances: 10 });
 
 initializeApp();
 
-export const getGeminiKey = onCall(
-  {
-    maxInstances: 10,
-    secrets: ["GEMINI_API_KEY"],
-  },
-  (_request) => {
-    // TODO: Add authentication and authorization checks
-    // if (!request.auth) {
-    //   // Throwing an HttpsError so that the client gets the error details.
-    //   throw new HttpsError("failed-precondition", "The function must be " +
-    //     "called while authenticated.");
-    // }
-    return {key: process.env.GEMINI_API_KEY};
-  },
-);
-
-// export const helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+export const getGeminiKey = defineSecret("GEMINI_API_KEY");
