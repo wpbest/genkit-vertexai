@@ -1,24 +1,8 @@
 {
   "functions": [
     {
+      "source": "functions",
       "codebase": "default",
-      "disallowLegacyRuntimeConfig": true,
-      "predeploy": [
-        "npm --prefix \"$RESOURCE_DIR\" run build"
-      ],
-      "source": "functions"
-    },
-    {
-      "codebase": "genkit-vertexai",
-      "disallowLegacyRuntimeConfig": true,
-      "predeploy": [
-        "npm --prefix \"$RESOURCE_DIR\" run build"
-      ],
-      "source": "genkit-vertexai"
-    },
-    {
-      "source": "genkit-func",
-      "codebase": "genkit-func",
       "disallowLegacyRuntimeConfig": true,
       "ignore": [
         "node_modules",
